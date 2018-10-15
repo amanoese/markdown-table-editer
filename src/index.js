@@ -11,7 +11,7 @@
     $button.on('click',()=>{
       console.log('click')
       let ths = $(this).find('tr').has('th').find('th').map((i,x)=>$(x).text()).toArray();
-      let tds = $(this).find('tr').has('td').toArray().map(tr=>$(tr).find('td').map((i,td)=>$(td).text()).toArray());
+      let tds = $(this).find('tr').has('td').toArray().map(tr=>$(tr).find('td').map((i,td)=>$(td).text()!==''?$(td).text():' ').toArray());
 
       let text = `
 |${ths.join('|')}|
