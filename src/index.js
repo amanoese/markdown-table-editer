@@ -10,8 +10,8 @@
     let $button = $('<button>copy markdown</button>')
     $button.on('click',()=>{
       console.log('click')
-      let ths = $(this).find('tr').filter((i,tr)=>$(tr).has('th')).find('th').map((i,x)=>$(x).text()).toArray();
-      let tds = $(this).find('tr').filter((i,tr)=>$(tr).has('td')).toArray().map(tr=>$(tr).find('td').map((i,td)=>$(td).text()).toArray());
+      let ths = $(this).find('tr').has('th').find('th').map((i,x)=>$(x).text()).toArray();
+      let tds = $(this).find('tr').has('td').toArray().map(tr=>$(tr).find('td').map((i,td)=>$(td).text()).toArray());
 
       let text = `
 |${ths.join('|')}|
