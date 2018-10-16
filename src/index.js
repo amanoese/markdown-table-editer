@@ -1,12 +1,19 @@
-(function(func) {
-  var scr = document.createElement("script");
-  scr.src = "https://code.jquery.com/jquery-3.3.1.min.js";
-  scr.onload = function() {
-      func(jQuery.noConflict(true));
-  };
-  document.body.appendChild(scr);
-})($=>{
-  $('table').each(function(){
+import $ from 'jquery'
+
+let target = null;
+browser.runtime.onMessage.addListener(request => {
+  console.log(target);
+  f(target)
+});
+
+document.addEventListener("mousedown", function(event){
+  if(event.button == 2) {
+    target = event.target;
+  }
+});
+
+let f = target=>{
+  $(target).parents('table').each(function(){
     let $button = $('<button>copy markdown</button>')
     $button.on('click',()=>{
       console.log('click')
@@ -31,4 +38,4 @@ ${tds.map(x=>'|'+x.join('|')+'|').join('\n')}
     $(this).before($button)
     $(this).find('th,td').prop('contentEditable',true)
   })
-})
+}
