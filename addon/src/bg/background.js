@@ -4,5 +4,6 @@ browser.contextMenus.create({
   contexts: ["all"]
 });
 browser.contextMenus.onClicked.addListener(function(info, tab) {
+  console.log('background',info,tab)
   browser.tabs.sendMessage(tab.id, "click context menu");
 })

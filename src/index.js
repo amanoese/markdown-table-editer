@@ -1,41 +1,48 @@
 import $ from 'jquery'
 
-let target = null;
-browser.runtime.onMessage.addListener(request => {
-  console.log(target);
-  f(target)
-});
+(()=>{
+  let targetNode = null;
 
-document.addEventListener("mousedown", function(event){
-  if(event.button == 2) {
-    target = event.target;
-  }
-});
+  document.addEventListener("mousedown", function({target,button}){
+    if(button != 2) { return }
+    targetNode = target;
+  });
 
-let f = target=>{
-  $(target).parents('table').each(function(){
-    let $button = $('<button>copy markdown</button>')
-    $button.on('click',()=>{
-      console.log('click')
-      let ths = $(this).find('tr').has('th').find('th').map((i,x)=>$(x).text()).toArray();
-      let tds = $(this).find('tr').has('td').toArray().map(tr=>$(tr).find('td').map((i,td)=>$(td).text()!==''?$(td).text():' ').toArray());
+  let f = _=>{
+    $(_).parentsUntil('table').parent().first().each(function(){
+      let $table = $(this);
+      let $button = $('<button>');
+      $table.before($button);
+      $button.text('copy markdown');
+      $button.on('click',()=>{
+        console.log('click')
+        let ths = $table.find('tr').has('th').find('th').map((i,x)=>$(x).text()).toArray();
+        let tds = $table.find('tr').has('td').toArray().map(tr=>$(tr).find('td').map((i,td)=>$(td).text()!==''?$(td).text():' ').toArray());
 
-      let text = `
-|${ths.join('|')}|
-|${ths.map(x=>'---').join('|')}|
-${tds.map(x=>'|'+x.join('|')+'|').join('\n')}
-`
-      console.log(text)
-      let $pre = $('<pre>')
-      $pre.text(text)
-      let $d = $('<div>').append($pre)
-      $('body').append($d)
-      document.getSelection().selectAllChildren($d.get(0))
-      document.execCommand('copy');
-      $d.remove()
-      return false
+        let text = `
+  |${ths.join('|')}|
+  |${ths.map(x=>'---').join('|')}|
+  ${tds.map(x=>'|'+x.join('|')+'|').join('\n')}
+  `
+        console.log(text)
+        let $pre = $('<pre>')
+        $pre.text(text)
+        let $d = $('<div>').append($pre)
+        $('body').append($d)
+        document.getSelection().selectAllChildren($d.get(0))
+        document.execCommand('copy');
+        $d.remove()
+        return false
+      })
+      console.log($table,$button);
+      $table.find('th,td').prop('contentEditable',true)
+      console.log($table,$button);
     })
-    $(this).before($button)
-    $(this).find('th,td').prop('contentEditable',true)
-  })
-}
+  }
+
+  browser.runtime.onMessage.addListener(request => {
+    console.log(targetNode,request);
+    f(targetNode)
+  });
+
+})()
