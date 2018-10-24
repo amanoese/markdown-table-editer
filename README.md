@@ -1,18 +1,17 @@
 markdown-table-editer
 =====================
 
-markdownを直接編集できるようにします。
-編集したデータは、clipbordにcopyできます。
+MarkdownのTableの中でクリックするとTableが編集できるようになります。  
+編集したデータは、clipbordにcopyできます。  
+編集画面に貼り付けましょう。  
 
-![markdown-table-editer.gif](https://github.com/amanoese/markdown-table-editer/blob/images/markdown-table-editer.gif)
-
-## Install
-
-下記のコードをbookmarkletとして登録する
-
-```javascript:bookmaklet
-javascript:(function(){ var urls = ['https://amanoese.github.io/markdown-table-editer/src/index.js']; urls.forEach((url)=>{ let s = document.createElement('script'); s.src = url; document.head.appendChild(s); }); })();
-```
+## Usage
+Add-onをインストールすると、  
+右クリックで表示されるコンテキストメニューにアイコンが登録されます。  
+  
+https://addons.mozilla.org/ja/firefox/addon/markdown-table-editer/
+  
+![markdown-table-editer.gif](https://github.com/amanoese/markdown-table-editer/blob/images/markdown-table-editer-addon.gif)
 
 ## License
 MIT
