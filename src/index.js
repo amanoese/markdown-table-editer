@@ -20,10 +20,10 @@ import $ from 'jquery'
         let tds = $table.find('tr').has('td').toArray().map(tr=>$(tr).find('td').map((i,td)=>$(td).text()!==''?$(td).text():' ').toArray());
 
         let text = `
-  |${ths.join('|')}|
-  |${ths.map(x=>'---').join('|')}|
-  ${tds.map(x=>'|'+x.join('|')+'|').join('\n')}
-  `
+|${ths.join('|')}|
+|${ths.map(x=>'---').join('|')}|
+${tds.map(x=>'|'+x.join('|')+'|').join('\n')}
+`
         console.log(text)
         let $pre = $('<pre>')
         $pre.text(text)
