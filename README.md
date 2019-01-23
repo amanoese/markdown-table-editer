@@ -20,8 +20,8 @@ $ yarn install
 $ yarn build
 ```
 
-It create WebExtension in directory of web-ext-artifacts/
-The WebExtension in the addon folder should now work.
+It create WebExtension in directory of web-ext-artifacts/  
+The WebExtension in the addon folder should now work.  
 
 ## License
 MIT
