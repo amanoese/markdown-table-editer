@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": " webpack --mode production --progress --hide-modules && web-ext run --source-dir addon/",
-    "build": "webpack --mode production --progress --hide-modules && web-ext build --overwrite-dest --source-dir addon/ && zip -r web-ext-artifacts/source.zip * -x 'web-ext-artifacts/*' 'node_modules/*'"
+    "build": "webpack --mode production --progress --hide-modules && web-ext build --overwrite-dest --source-dir addon/ && git archive HEAD --output=web-ext-artifacts/source.zip"
   },
   "repository": {
     "type": "git",
