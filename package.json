@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": " webpack --mode production --progress --hide-modules && web-ext run --source-dir addon/",
-    "build": "web-ext build --overwrite-dest --source-dir addon/ && zip -r web-ext-artifacts/source.zip * -x 'web-ext-artifacts/*' 'node_modules/*'"
+    "build": "webpack --mode production --progress --hide-modules && web-ext build --overwrite-dest --source-dir addon/ && zip -r web-ext-artifacts/source.zip * -x 'web-ext-artifacts/*' 'node_modules/*'"
   },
   "repository": {
     "type": "git",
@@ -20,11 +20,11 @@
   "homepage": "https://github.com/amanoese/markdown-table-editer#readme",
   "devDependencies": {
     "cross-env": "^5.2.0",
+    "web-ext": "^2.9.3",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "jquery": "^3.3.1",
-    "web-ext": "^2.9.1"
+    "jquery": "^3.3.1"
   }
 }
