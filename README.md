@@ -13,5 +13,15 @@ https://addons.mozilla.org/ja/firefox/addon/markdown-table-editer/
   
 ![markdown-table-editer.gif](https://github.com/amanoese/markdown-table-editer/blob/images/markdown-table-editer-addon.gif)
 
+## How to build it
+
+```bash
+$ yarn install
+$ yarn build
+```
+
+It create WebExtension in directory of web-ext-artifacts/
+The WebExtension in the addon folder should now work.
+
 ## License
 MIT
