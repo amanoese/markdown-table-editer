@@ -11,9 +11,10 @@ import $ from 'jquery'
   let f = _=>{
     $(_).parentsUntil('table').parent().first().each(function(){
       let $table = $(this);
-      let $button = $('<button>');
+      let $button = $('<input>');
       $table.before($button);
-      $button.text('copy markdown');
+      $button.attr('type','button');
+      $button.val('copy markdown');
       $button.on('click',()=>{
         console.log('click')
         let ths = $table.find('tr').has('th').find('th').map((i,x)=>$(x).text()).toArray();
